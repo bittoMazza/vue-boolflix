@@ -1,7 +1,9 @@
 <template>
     <div>
         <h2>Film</h2>
-        <Card/>
+        <Card
+        :filmList="searchedFilms"
+        />
     </div>
 </template>
 

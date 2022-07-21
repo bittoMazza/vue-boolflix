@@ -1,7 +1,9 @@
 <template>
   <div>
     <h2>Serie</h2>
-    <Card/>
+    <Card
+    :seriesList="searchedSeries"
+    />
     </div>
 </template>
 
