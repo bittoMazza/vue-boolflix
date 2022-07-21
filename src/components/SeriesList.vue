@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Serie</h2>
+    <h2 class="text-white">Serie</h2>
     <Card
     :seriesList="searchedSeries"
     />

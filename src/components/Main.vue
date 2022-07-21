@@ -1,10 +1,12 @@
 <template>
     <main>
-        <FilmList
-         :searchedFilms="searchedFilmList"/>
-        <SeriesList
-         :searchedSeries="searchedSeriesList"     
-        />
+        <div class="container">
+             <FilmList
+                :searchedFilms="searchedFilmList"/>
+                <SeriesList
+                :searchedSeries="searchedSeriesList"     
+                />
+        </div>
     </main>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-<div>
-    <div v-for="film in filmList" class="p-3" :key="film.id">
-                <img :src="elementPoster+film.poster_path" alt="immagine poster">
+<div class="d-flex flex-wrap">
+    <div v-for="film in filmList" :key="film.id" class="card-container">
+                <img :src="'https://image.tmdb.org/t/p/w185'+film.poster_path" class="w-100" alt="immagine poster"> 
                 <span class="d-block">{{ film.title }}</span>
                 <span class="d-block">{{ film.original_title}}</span>
                 <img :src="convertLangToFlag(film)" class="flag-image d-block" alt="Bandiera non presente">
@@ -10,8 +10,8 @@
                 </span>
                 <span v-else> NON CI SONO VOTI </span>
     </div> 
-     <div v-for="series in seriesList" class="p-3" :key="series.id">
-                <img :src="elementPoster+series.poster_path" alt="immagine poster">
+     <div v-for="series in seriesList" :key="series.id" class="card-container">
+                <img :src="'https://image.tmdb.org/t/p/w185'+series.poster_path" class="w-100" alt="immagine poster">
                 <span class="d-block">{{ series.name }}</span>
                 <span class="d-block">{{ series.original_name}}</span>
                 <img :src="convertLangToFlag(series)" class="flag-image d-block" alt="Bandiera non presente">
@@ -30,7 +30,6 @@ export default {
      data:function(){
         return{
             languageArray:['it','de','en','pt'], 
-            elementPoster:"https://image.tmdb.org/t/p/w342" 
         }
     },
     props:{
@@ -59,5 +58,10 @@ export default {
     }
 .star-icon{
     color:rgb(148, 148, 41);
+}
+.card-container{
+    border:2px solid black;
+    margin: 20px 10px;
+    width:calc((100% / 6) - 20px);
 }
 </style>

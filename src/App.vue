@@ -26,8 +26,8 @@ export default {
     return{
       searchedFilmList:[],
       searchedSeriesList:[],
-      urlPathFilm:'https://api.themoviedb.org/3/search/movie?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query=',
-      urlPathTV:'https://api.themoviedb.org/3/search/tv?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query=',
+      urlPathFilm:'https://api.themoviedb.org/3/search/movie?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&language=it-IT&query=',
+      urlPathTV:'https://api.themoviedb.org/3/search/tv?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&language=it-IT&query=',
     }
   },
   methods:{
@@ -60,4 +60,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap-icons/font/bootstrap-icons.css"; 
 @import "~bootstrap/scss/bootstrap.scss";
+body{
+  background-color: #444242;
+}
 </style>
