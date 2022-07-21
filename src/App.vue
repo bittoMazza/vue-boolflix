@@ -28,7 +28,6 @@ export default {
       searchedSeriesList:[],
       urlPathFilm:'https://api.themoviedb.org/3/search/movie?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query=',
       urlPathTV:'https://api.themoviedb.org/3/search/tv?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query=',
-      completedPath:'',
     }
   },
   methods:{
