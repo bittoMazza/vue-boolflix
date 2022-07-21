@@ -39,7 +39,6 @@ export default {
                  axios.get(this.urlPathFilm+Element) // Facciamo una ricerca nei film e popoliamo il suo array
                 .then( (result) => {   
                         this.searchedFilmList = result.data.results;  
-                        console.log(this.searchedFilmList)
                         })                   
                     .catch((error) => {
                         console.warn(error)
@@ -47,7 +46,6 @@ export default {
                 axios.get(this.urlPathTV+Element) // Facciamo una ricerca nelle serie e popoliamo il suo array
                 .then( (result) => {   
                         this.searchedSeriesList = result.data.results;  
-                        console.log(this.searchedSeriesList)
                         })                   
                     .catch((error) => {
                         console.warn(error)
@@ -60,5 +58,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bootstrap-icons/font/bootstrap-icons.css"; 
 @import "~bootstrap/scss/bootstrap.scss";
 </style>
