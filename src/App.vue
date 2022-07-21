@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <Header/>
-    <Main/>
+    <Header
+    @selectElement="SearchFilmName"
+    />
+    <Main
+    :searchedListElement="searchedListElement"
+    />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue"
 import Main from "./components/Main.vue"
+import axios from 'axios';
 
 
 export default {
@@ -15,6 +20,29 @@ export default {
   components: {
     Header,
     Main
+  },
+  data:function(){
+    return{
+      searchedListElement:[],
+    }
+  },
+  methods:{
+    SearchFilmName(searchedFilm){
+            if(searchedFilm == null || searchedFilm == ''){
+                alert('Inserisci il nome del film da cercare')
+            }
+            else{
+                 axios.get('https://api.themoviedb.org/3/search/movie?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query='+searchedFilm) // Cerchiamo per titolo
+                .then( (result) => {   
+                        this.searchedListElement = result.data.results;    
+                        console.log(this.searchedListElement)
+                        })                   
+                    .catch((error) => {
+                        console.warn(error)
+                    })
+            }
+           
+        }
   }
 }
 </script>
