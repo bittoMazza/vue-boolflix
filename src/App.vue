@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <Header
-    @selectElement="SearchFilmName"
+    @selectElement="SearchElementsName"
     />
     <Main
-    :searchedListElement="searchedListElement"
-    :completedPath="completedPath"
+    :searchedFilmList="searchedFilmList"
+    :searchedSeriesList="searchedSeriesList"
     />
   </div>
 </template>
@@ -24,23 +24,31 @@ export default {
   },
   data:function(){
     return{
-      searchedListElement:[],
+      searchedFilmList:[],
+      searchedSeriesList:[],
       urlPathFilm:'https://api.themoviedb.org/3/search/movie?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query=',
       urlPathTV:'https://api.themoviedb.org/3/search/tv?api_key=f6a28c97150ef559daa0a8f32bc1fee9&&query=',
       completedPath:'',
     }
   },
   methods:{
-    SearchFilmName(searchedFilm){
-            if(searchedFilm == null || searchedFilm == ''){
-                alert('Inserisci il nome del film da cercare')
+    SearchElementsName(Element){
+            if(Element == null || Element == ''){
+                alert('Inserisci il nome del film/serie da cercare')
             }
             else{
-                 axios.get(this.urlPath+searchedFilm) // Cerchiamo per titolo
+                 axios.get(this.urlPathFilm+Element) // Facciamo una ricerca nei film e popoliamo il suo array
                 .then( (result) => {   
-                        this.completedPath = this.urlPath+searchedFilm
-                        this.searchedListElement = result.data.results;  
-                        console.log(this.searchedListElement)
+                        this.searchedFilmList = result.data.results;  
+                        console.log(this.searchedFilmList)
+                        })                   
+                    .catch((error) => {
+                        console.warn(error)
+                    })
+                axios.get(this.urlPathTV+Element) // Facciamo una ricerca nelle serie e popoliamo il suo array
+                .then( (result) => {   
+                        this.searchedSeriesList = result.data.results;  
+                        console.log(this.searchedSeriesList)
                         })                   
                     .catch((error) => {
                         console.warn(error)
@@ -48,9 +56,6 @@ export default {
             }
            
         },
-    SearchSerieName(searchSeries){
-      
-    }
   }
 }
 </script>
