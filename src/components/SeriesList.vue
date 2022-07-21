@@ -1,9 +1,11 @@
 <template>
   <div>
     <h2 class="text-white">Serie</h2>
-    <Card
-    :seriesList="searchedSeries"
-    />
+    <div class="d-flex flex-wrap">
+            <Card v-for="series in searchedSeries" :key="series.id" 
+            :listItem="series"
+            />
+    </div>
     </div>
 </template>
 

@@ -2,10 +2,10 @@
     <main>
         <div class="container">
              <FilmList
-                :searchedFilms="searchedFilmList"/>
-                <SeriesList
-                :searchedSeries="searchedSeriesList"     
-                />
+             :searchedFilms="searchedFilmList"/>
+             <SeriesList
+             :searchedSeries="searchedSeriesList"     
+             />
         </div>
     </main>
 </template>

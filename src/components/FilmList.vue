@@ -1,9 +1,11 @@
 <template>
     <div>
         <h2>Film</h2>
-        <Card
-        :filmList="searchedFilms"
-        />
+        <div class="d-flex flex-wrap">
+            <Card  v-for="film in searchedFilms" :key="film.id" 
+            :listItem="film"
+            />
+        </div>
     </div>
 </template>
 
