@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="search-container">
+    <div class="search-container p-3">
         <input type="text" v-model="searchedElement" placeholder="Scrivi quale film vuoi cercare">
         <button @click="$emit('selectElement',searchedElement)"> CERCA </button>
     </div>
