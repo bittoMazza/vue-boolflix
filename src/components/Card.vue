@@ -47,6 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../styles/variables.scss";
 .flag-image{
         width:30px;
     }
@@ -64,19 +65,19 @@ export default {
     }
 
     ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19, 0.3); 
+        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19, 0.5); 
         border-radius: 10px;
     }
 
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background: rgb(238, 32, 32); 
+        background:$mainColor; 
     }
     .card-content{
         display: none;
         color: white;
         position: absolute;
-        top: 30px;
+        top: 20px;
         left: 20px;
         right: 20px;
         .card-info{
