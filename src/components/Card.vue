@@ -1,10 +1,11 @@
 <template>
-    <div class="card-container">
-        <img :src="'https://image.tmdb.org/t/p/w185'+listItem.poster_path" class="w-100" alt="immagine poster"> 
-        <div v-if="listItem.title != null || listItem.title != undefined">
-            <span class="d-block">{{ listItem.title }}</span>
-            <span class="d-block">{{ listItem.original_title}}</span>
-        </div>
+    <div class="card-container" :style="{backgroundImage:`url(${posterImage})`}">
+        <img class="poster-img" :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path"  alt="immagine poster non presente"> 
+        <div class="d-none"> 
+            <div v-if="listItem.title != null || listItem.title != undefined"> <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
+                <span class="d-block">{{ listItem.title }}</span>
+                <span class="d-block">{{ listItem.original_title}}</span>
+            </div>
         <div v-else>
             <span class="d-block">{{ listItem.name }}</span>
             <span class="d-block">{{ listItem.original_name}}</span>
@@ -14,7 +15,8 @@
             <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i>
         </span>
         <span v-else> NON CI SONO VOTI </span>
-    </div> 
+        </div> 
+    </div>
 </template>
 
 <script>
@@ -22,6 +24,7 @@ export default {
      data:function(){
         return{
             languageArray:['it','de','en','pt'], 
+            posterImage:'https://image.tmdb.org/t/p/w342'+this.listItem.poster_path,
         }
     },
     props:{
@@ -43,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .flag-image{
         width:30px;
     }
@@ -51,8 +54,10 @@ export default {
     color:rgb(148, 148, 41);
 }
 .card-container{
-    border:2px solid black;
+    background-image: var();
+    background-color: grey;
+    background-size: cover;
     margin: 20px 10px;
-    width:calc((100% / 6) - 20px);
 }
+
 </style>

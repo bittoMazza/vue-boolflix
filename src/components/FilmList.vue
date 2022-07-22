@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h2>Film</h2>
+    <div class="py-3">
+        <h2 class="text-white text-center">Film</h2>
         <div class="d-flex flex-wrap">
             <Card  v-for="film in searchedFilms" :key="film.id" 
             :listItem="film"
