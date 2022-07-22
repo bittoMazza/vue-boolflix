@@ -5,19 +5,19 @@
         <div class="card-content">
             <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
             <div v-if="listItem.title != null || listItem.title != undefined"> 
-                <span class="d-block"><span class="card-info">Titolo</span> : {{ listItem.title }}</span>
-                <span class="d-block"><span class="card-info">Titolo Originale</span> : {{ listItem.original_title}}</span>
+                <span class="d-block py-1 "><span class="card-info">Titolo</span> : {{ listItem.title }}</span>
+                <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ listItem.original_title}}</span>
             </div>
             <div v-else>
-                <span class="d-block"><span class="card-info">Titolo</span> : {{ listItem.name }}</span>
-                <span class="d-block"><span class="card-info">Titolo Originale</span> : {{ listItem.original_name}}</span>
+                <span class="d-block py-1 "><span class="card-info">Titolo</span> : {{ listItem.name }}</span>
+                <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ listItem.original_name}}</span>
             </div>
             <span v-if="convertVoteToStar(listItem.vote_average) != 0">
-                <span class="card-info">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span>
+                <span class="card-info py-1">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span><br>
             </span>
-            <span v-else> NON CI SONO VOTI </span>
-            <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>
-            <!-- <img :src="convertLangToFlag(listItem)" class="flag-image" alt="Bandiera non presente"><br>  -->         
+            <span v-else class="py-1"> NON CI SONO VOTI </span><br>
+            <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
+            <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>                 
         </div>       
     </div>
 </template>
@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../styles/variables.scss";
 .flag-image{
         width:30px;
@@ -66,16 +66,30 @@ export default {
     color:rgb(219, 78, 12);
 }
 .poster-image{
+    backface-visibility: hidden;
     height: 100%;
     width: 100%;
 }
 .card-container{
     position:relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
     border: 2px solid black;
     background-color: black;
     margin: 15px 5px;
     height: 500px;
     width: 342px;
+       
+    &:hover .poster-image{
+        opacity: 0.1;
+    }
+    &:hover {
+         transform: rotateY( 180deg ) ;
+         transition: transform 1s;
+    }
+    &:hover .card-content{
+        display: block;
+    }
         ::-webkit-scrollbar {
         width: 12px;
     }
@@ -90,29 +104,25 @@ export default {
         background:$mainColor; 
     }
     .card-content{
+        backface-visibility: hidden;
+        transform: rotateY( 180deg );
         display: none;
         color: white;
         position: absolute;
         top: 20px;
-        left: 20px;
-        right: 20px;
+        left: 10px;
+        right: 30px;
         .card-info{
             font-weight: bold;
         }
         .card-overview{
             margin-top: 10px;
             height: 200px;
-            overflow: auto;
+            overflow-y: scroll;
             text-overflow: ellipsis;
         }
     }
-    
-    &:hover .poster-image{
-        opacity: 0.1;
-    }
-    &:hover .card-content{
-        display: block;
-    }
+ 
 }
 
 </style>

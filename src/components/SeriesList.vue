@@ -26,5 +26,5 @@ export default {
 .scrollmenu {
   overflow-x: auto;
   white-space: nowrap;
-}
+  }
 </style>

@@ -1,9 +1,9 @@
 <template>
     <main>
-        <div class="container">
-             <FilmList 
+        <div class="container-elements">
+             <FilmList v-show="searchedFilmList != 0"
              :searchedFilms="searchedFilmList"/>
-             <SeriesList
+             <SeriesList  v-show="searchedSeriesList != 0"
              :searchedSeries="searchedSeriesList"     
              />
         </div>
@@ -29,6 +29,8 @@ export default {
 <style lang="scss">
 @import "../styles/variables.scss";
 // Style for both menu horizontal scroll
-
+.container-elements{
+    margin: 0 100px;
+}
 
 </style>
