@@ -1,8 +1,9 @@
 <template>
     <div class="card-container">
-        <img :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path" class="img-fluid poster-image" alt="Poster Mancante"> 
+        <img :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path" class="poster-image text-white" :alt="'Poster mancante di : '+checkPosterImg(listItem)"> 
         <div class="card-content">
-            <div v-if="listItem.title != null || listItem.title != undefined"> <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
+            <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
+            <div v-if="listItem.title != null || listItem.title != undefined"> 
                 <span class="d-block"><span class="card-info">Titolo</span> : {{ listItem.title }}</span>
                 <span class="d-block"><span class="card-info">Titolo Originale</span> : {{ listItem.original_title}}</span>
             </div>
@@ -41,7 +42,15 @@ export default {
         convertVoteToStar(vote){
            const starVote = vote / 2
            return Math.ceil(starVote);
-        }  
+        },
+        checkPosterImg(item){
+            if(item.title != null || item.title != undefined){
+                return item.title
+            }
+            else{
+                return item.name 
+            }
+        }
     }
 }
 </script>
@@ -55,17 +64,23 @@ export default {
     font-size: 25px;
     color:rgb(219, 78, 12);
 }
+.poster-image{
+    height: 100%;
+    width: 100%;
+}
 .card-container{
     position:relative;
+    border: 2px solid black;
     background-color: black;
-    margin: 20px 10px;
-    width:calc((100% / 4) - 20px);
+    margin: 15px 5px;
+    height: 500px;
+    width: 342px;
         ::-webkit-scrollbar {
         width: 12px;
     }
 
     ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19, 0.5); 
+        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19, 0.3); 
         border-radius: 10px;
     }
 
@@ -85,7 +100,7 @@ export default {
         }
         .card-overview{
             margin-top: 10px;
-            height: 300px;
+            height: 100px;
             overflow: auto;
             text-overflow: ellipsis;
         }
@@ -98,4 +113,5 @@ export default {
         display: block;
     }
 }
+
 </style>

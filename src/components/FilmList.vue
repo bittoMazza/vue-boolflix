@@ -1,8 +1,8 @@
 <template>
-    <div class="py-3">
-        <h2 class="text-white text-center">Film</h2>
-        <div class="d-flex flex-wrap">
-            <Card  v-for="film in searchedFilms" :key="film.id" 
+    <div v-show="searchedFilms.length != 0" class="py-5 scroll-style">
+        <h2 class="text-white text-start">FILM</h2>
+        <div class="scrollmenu">
+            <Card class="d-inline-block"  v-for="film in searchedFilms" :key="film.id" 
             :listItem="film"
             />
         </div>
@@ -21,6 +21,7 @@ export default {
 }
 </script>
 
-<style>
-   
+<style lang="scss">
+@import "../styles/variables.scss";
+
 </style>

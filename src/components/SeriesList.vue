@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <h2 class="text-white text-center">Serie</h2>
-    <div class="d-flex flex-wrap">
-            <Card v-for="series in searchedSeries" :key="series.id" 
-            :listItem="series"
-            />
-    </div>
+    <div v-show="searchedSeries.length != 0" class="py-5 scroll-style">
+        <h2 class="text-white text-start">SERIE TV</h2>
+        <div class="scrollmenu">
+                <Card class="d-inline-block" v-for="series in searchedSeries" :key="series.id" 
+                :listItem="series"
+                />
+        </div>
     </div>
 </template>
 
@@ -21,6 +21,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+@import "../styles/variables.scss";
 </style>
