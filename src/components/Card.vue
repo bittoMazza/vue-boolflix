@@ -1,6 +1,7 @@
 <template>
     <div class="card-container">
-        <img :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path" class="poster-image text-white" :alt="'Poster mancante di : '+checkPosterImg(listItem)"> 
+        <img v-if="listItem.poster_path != null" :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path" class="poster-image text-white" alt="immagine Poster"> 
+        <img v-else src="/no-poster.png" class="poster-image" alt="Poster non disponibile">
         <div class="card-content">
             <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
             <div v-if="listItem.title != null || listItem.title != undefined"> 
@@ -12,7 +13,7 @@
                 <span class="d-block"><span class="card-info">Titolo Originale</span> : {{ listItem.original_name}}</span>
             </div>
             <span v-if="convertVoteToStar(listItem.vote_average) != 0">
-                <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i>
+                <span class="card-info">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span>
             </span>
             <span v-else> NON CI SONO VOTI </span>
             <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>
@@ -100,7 +101,7 @@ export default {
         }
         .card-overview{
             margin-top: 10px;
-            height: 100px;
+            height: 200px;
             overflow: auto;
             text-overflow: ellipsis;
         }
