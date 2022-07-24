@@ -72,7 +72,7 @@ export default {
 }
 .card-container{
     position:relative;
-    transition: transform 1s;
+    transition: transform 0.5s;
     transform-style: preserve-3d;
     border: 2px solid black;
     background-color: black;

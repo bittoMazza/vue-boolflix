@@ -23,8 +23,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/variables.scss";
-.scrollmenu {
-  overflow-x: auto;
-  white-space: nowrap;
-  }
+
 </style>

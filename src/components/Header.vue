@@ -1,12 +1,12 @@
 <template>
   <header>
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center px-3">
       <div>
         <img src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" class="netflix-logo m-3" alt="">
       </div>
-      <div class="search-container p-3">
-          <input type="text" class="" v-model="searchedElement" @keyup.enter="$emit('selectElement',searchedElement)" placeholder="Scrivi quale film vuoi cercare">
-          <button @click="$emit('selectElement',searchedElement)"> CERCA </button>
+      <div class="search-box p-3">
+        <input type="text" class="input-search" v-model="searchedElement" @keyup.enter="$emit('selectElement',searchedElement)"  placeholder="Cosa vuoi guardare ?">
+        <button class="btn-search" @click="$emit('selectElement',searchedElement)"><i class="bi bi-search"></i></button>
       </div>
     </div>
   </header>
@@ -23,10 +23,42 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../styles/variables.scss";
   header{
     background-color: black;
     .netflix-logo{
       width:100px;
     }
+
+.input-search{
+  width: fit-content;
+  border-style: none;
+  padding: 8px;
+  margin-right: 20px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: black;
+  color:#fff;
+}
+.input-search::placeholder{
+  color:rgba(255,255,255,.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  outline: none;
+  border-radius: 50%;
+  background-color:$mainColor;
+  right: 0px;
+  color:white ;
+
+}
   }
 </style>

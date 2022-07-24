@@ -1,7 +1,7 @@
 <template>
     <div class="py-5 scroll-style">
         <h2 class="text-white text-start">FILM</h2>
-        <div class="scrollmenu">
+        <div class="d-flex flex-wrap">
             <Card class="d-inline-block"  v-for="film in searchedFilms" :key="film.id" 
             :listItem="film"
             />
@@ -23,8 +23,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/variables.scss";
-.scrollmenu {
-  overflow-x: auto;
-  white-space: nowrap;
-} 
+
 </style>
