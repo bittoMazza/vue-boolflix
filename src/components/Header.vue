@@ -41,13 +41,15 @@ export default {
   border: 1px solid white;
   background-color: black;
   color:#fff;
-}
-.input-search::placeholder{
+
+  &::placeholder{
   color:rgba(255,255,255,.5);
   font-size: 18px;
   letter-spacing: 2px;
   font-weight: 100;
+  }
 }
+
 .btn-search{
   width: 50px;
   height: 50px;
@@ -56,9 +58,7 @@ export default {
   outline: none;
   border-radius: 50%;
   background-color:$mainColor;
-  right: 0px;
   color:white ;
-
 }
   }
 </style>

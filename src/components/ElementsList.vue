@@ -1,19 +1,18 @@
 <template>
-    <div class="py-5 scroll-style">
-        <h2 class="text-white text-start">FILM</h2>
+    <div>
         <div class="d-flex flex-wrap">
-            <Card class="d-inline-block"  v-for="film in searchedFilms" :key="film.id" 
-            :listItem="film"
+            <Card class="d-inline-block"  v-for="element in searchedElements" :key="element.id" 
+            :listItem="element"
             />
-        </div>
-    </div>
+        </div>      
+     </div>
 </template>
 
 <script>
 import Card from "./Card.vue"
 export default {
      props:{
-        searchedFilms:Array,
+        searchedElements:Array,
     },
     components:{
         Card,

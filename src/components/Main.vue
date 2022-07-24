@@ -1,18 +1,24 @@
 <template>
     <main>
         <div class="container-elements">
-             <FilmList v-show="searchedFilmList != 0"
-             :searchedFilms="searchedFilmList"/>
-             <SeriesList  v-show="searchedSeriesList != 0"
-             :searchedSeries="searchedSeriesList"     
-             />
+            <div class="py-5" v-show="searchedFilmList != 0">
+                <h2 class="text-white text-start">FILM</h2>
+                <ElementsList
+                :searchedElements="searchedFilmList"/>
+            </div>
+            <div class="py-5"  v-show="searchedSeriesList != 0">
+                <h2 class="text-white text-start">SERIE TV</h2>
+                 <ElementsList
+                :searchedElements="searchedSeriesList"     
+                />
+            </div>
+            
         </div>
     </main>
 </template>
 
 <script>
-import FilmList from "./FilmList.vue"
-import SeriesList from "./SeriesList.vue"
+import ElementsList from "./ElementsList.vue"
 
 export default {
  props:{
@@ -20,8 +26,7 @@ export default {
     searchedSeriesList:Array,
     },
  components:{
-    FilmList,
-    SeriesList,
+    ElementsList,
  }
 }
 </script>
