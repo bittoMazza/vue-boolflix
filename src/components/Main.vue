@@ -1,13 +1,14 @@
 <template>
     <main>
         <div class="container-elements">
+            <h2 class="text-center text-white"> </h2>
             <div class="py-5" v-show="searchedFilmList != 0">
-                <h2 class="text-white text-start">FILM</h2>
+                <h2 class="text-white text-start display-2 text-center">FILM</h2>
                 <ElementsList
                 :searchedElements="searchedFilmList"/>
             </div>
             <div class="py-5"  v-show="searchedSeriesList != 0">
-                <h2 class="text-white text-start">SERIE TV</h2>
+                <h2 class="text-white text-start display-2 text-center">SERIE TV</h2>
                  <ElementsList
                 :searchedElements="searchedSeriesList"     
                 />

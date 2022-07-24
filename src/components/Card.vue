@@ -77,9 +77,7 @@ export default {
     border: 2px solid black;
     background-color: black;
     margin: 15px 5px;
-    height: 500px;
-    width: 342px;
-       
+    width: calc((100% / 6) - 10px);
     &:hover .poster-image{
         opacity: 0.1;
     }
@@ -117,12 +115,29 @@ export default {
         }
         .card-overview{
             margin-top: 10px;
-            height: 200px;
+            height: 120px;
             overflow-y: scroll;
             text-overflow: ellipsis;
         }
     }
- 
+    
 }
-
+   @media screen and (max-width: 1600px) {
+    .card-container {
+      width: calc((100% / 4) - 10px);
+        }
+    }
+    @media screen and (max-width: 1190px) {
+    .card-container {
+      width: calc((100% / 3) - 10px);
+        }
+    }
+    .card-overview{
+        height: 200px;
+    }
+     @media screen and (max-width: 970px) {
+    .card-container {
+      width: calc((100% / 2) - 10px);
+        }
+    }
 </style>

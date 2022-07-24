@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="d-flex flex-wrap">
-            <Card class="d-inline-block"  v-for="element in searchedElements" :key="element.id" 
+            <Card  v-for="element in searchedElements" :key="element.id" 
             :listItem="element"
             />
         </div>      
