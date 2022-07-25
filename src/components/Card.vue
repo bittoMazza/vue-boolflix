@@ -16,7 +16,7 @@
             <p>
                 <span class="card-info text-white">Cast : </span>
                 <span class="text-white"  v-for="(Actors,index) in searchedListCast[searchedCastIndex]" :key="index">
-                 {{Actors.name}} ,
+                 {{Actors.name}},
                 </span>
             </p>
         </div>       
