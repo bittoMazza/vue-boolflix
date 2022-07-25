@@ -38,7 +38,8 @@ export default {
             else{
                  axios.get(this.urlPathFilm+Element) // Facciamo una ricerca nei film e popoliamo il suo array
                 .then( (result) => {   
-                        this.searchedFilmList = result.data.results;  
+                        this.searchedFilmList = result.data.results; 
+                        console.log(this.searchedFilmList) 
                         })                   
                     .catch((error) => {
                         console.warn(error)

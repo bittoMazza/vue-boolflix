@@ -4,25 +4,32 @@
         <img v-else src="/no-poster.png" class="poster-image" alt="Poster non disponibile">
         <div class="card-content">
             <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
-            <div v-if="listItem.title != null || listItem.title != undefined"> 
-                <span class="d-block py-1 "><span class="card-info">Titolo</span> : {{ listItem.title }}</span>
-                <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ listItem.original_title}}</span>
-            </div>
-            <div v-else>
-                <span class="d-block py-1 "><span class="card-info">Titolo</span> : {{ listItem.name }}</span>
-                <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ listItem.original_name}}</span>
+            <div>
+                <span class="d-block py-1"><span class="card-info">Titolo</span> : {{ getTitle(listItem) }}</span>
+                <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ getOriginalTitle(listItem) }}</span>
             </div>
             <span v-if="convertVoteToStar(listItem.vote_average) != 0">
                 <span class="card-info py-1">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span><br>
             </span>
             <span v-else class="py-1"> NON CI SONO VOTI </span><br>
             <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
-            <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>                 
+            <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>    
+            <p v-if="listItem.title != null || listItem.title != undefined">
+                <span class="text-white" v-for="(cast,index) in getCast('movie',listItem.id) " :key="index">
+                 pappa
+                </span>
+            </p>
+            <p v-else>
+                 <span class="text-white" v-for="(cast,index) in getCast('tv',listItem.id) " :key="index">
+                   pappa
+                </span>
+            </p>
         </div>       
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
      data:function(){
         return{
@@ -30,7 +37,7 @@ export default {
         }
     },
     props:{
-        listItem:Object
+        listItem:Object,
     },
      methods:{
         convertLangToFlag(singleElement){
@@ -44,14 +51,30 @@ export default {
            const starVote = vote / 2
            return Math.ceil(starVote);
         },
-        checkPosterImg(item){
-            if(item.title != null || item.title != undefined){
+        getTitle(item){
+            if( item.title != null || item.title != undefined)
+            {
                 return item.title
             }
-            else{
-                return item.name 
+            return item.name
+        },
+        getOriginalTitle(item){
+             if( item.title != null || item.title != undefined)
+            {
+                return item.original_title
             }
-        }
+            return item.original_name
+        },
+        getCast(typeElement,idElement){
+            axios.get(`https://api.themoviedb.org/3/${typeElement}/${idElement}/credits?api_key=f6a28c97150ef559daa0a8f32bc1fee9`)
+                .then( (result) => {   
+                        let castList = result.data.cast; 
+                        console.log(castList.slice(0,5))
+                        return castList.slice(0,5)
+                        })         
+     
+        },
+
     }
 }
 </script>
@@ -107,15 +130,15 @@ export default {
         display: none;
         color: white;
         position: absolute;
-        top: 20px;
+        top: 10px;
         left: 10px;
-        right: 30px;
+        right: 20px;
         .card-info{
             font-weight: bold;
         }
         .card-overview{
             margin-top: 10px;
-            height: 120px;
+            height: 80px;
             overflow-y: scroll;
             text-overflow: ellipsis;
         }

@@ -27,7 +27,7 @@ export default {
   header{
     background-color: black;
     .netflix-logo{
-      width:100px;
+      width:150px;
     }
 
 .input-search{
@@ -37,8 +37,7 @@ export default {
   margin-right: 20px;
   font-size: 18px;
   letter-spacing: 2px;
-  border-radius: 5px;
-  border: 1px solid white;
+  border-bottom: 1px solid white;
   background-color: black;
   color:#fff;
 
