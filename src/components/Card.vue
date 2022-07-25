@@ -13,14 +13,9 @@
             <span v-else class="py-1"> NON CI SONO VOTI </span><br>
             <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
             <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>    
-            <p v-if="listItem.title != null || listItem.title != undefined">
-                <span class="text-white"  v-for="(actor,index) in searchedListCast" :key="index">
-                 aa
-                </span>
-            </p>
-            <p v-else>
-                 <span class="text-white" v-for="(actor,index) in searchedListCast" :key="index">
-                   aa
+            <p>
+                <span class="text-white"  v-for="(Actors,index) in searchedListCast" :key="index">
+                 {{Actors.name}}
                 </span>
             </p>
         </div>       
@@ -32,6 +27,7 @@ export default {
      data:function(){
         return{
             languageArray:['it','de','en','pt'],
+            indice:0
         }
     },
     props:{
@@ -65,7 +61,6 @@ export default {
             }
             return item.original_name
         },
-        
 
     },
   
