@@ -3,7 +3,6 @@
         <img v-if="listItem.poster_path != null" :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path" class="poster-image text-white" alt="immagine Poster"> 
         <img v-else src="/no-poster.png" class="poster-image" alt="Poster non disponibile">
         <div class="card-content">
-            <!-- Title è una proprità dei film,se non c'è o è undefined allora stiamo lavorando sulle serie -->
             <div>
                 <span class="d-block py-1"><span class="card-info">Titolo</span> : {{ getTitle(listItem) }}</span>
                 <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ getOriginalTitle(listItem) }}</span>
@@ -15,13 +14,13 @@
             <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
             <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>    
             <p v-if="listItem.title != null || listItem.title != undefined">
-                <span class="text-white" v-for="(cast,index) in getCast('movie',listItem.id) " :key="index">
-                 pappa
+                <span class="text-white"  v-for="(cast,index) in getCast('movie',listItem.id)" :key="index">
+                 {{cast.name}}
                 </span>
             </p>
             <p v-else>
                  <span class="text-white" v-for="(cast,index) in getCast('tv',listItem.id) " :key="index">
-                   pappa
+                   {{cast.name}}
                 </span>
             </p>
         </div>       
@@ -65,17 +64,24 @@ export default {
             }
             return item.original_name
         },
-        getCast(typeElement,idElement){
+         getCast(typeElement,idElement){
             axios.get(`https://api.themoviedb.org/3/${typeElement}/${idElement}/credits?api_key=f6a28c97150ef559daa0a8f32bc1fee9`)
                 .then( (result) => {   
-                        let castList = result.data.cast; 
-                        console.log(castList.slice(0,5))
-                        return castList.slice(0,5)
-                        })         
+                        let castList = result.data.cast.slice(0,5); 
+                        console.log(castList)
+                         return castList 
+                        })   
+                         .catch((error) => {
+                        console.warn(error)
+                    })   
      
-        },
-
-    }
+        }
+       /*  getGenre(typeElement,idElement){
+            axios.get(`https://api.themoviedb.org/3/genre/${typeElement}/list?api_key=<<api_key>>&language=en-US`)
+        }
+ */
+    },
+  
 }
 </script>
 
