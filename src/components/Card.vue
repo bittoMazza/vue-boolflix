@@ -14,13 +14,13 @@
             <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
             <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>    
             <p v-if="listItem.title != null || listItem.title != undefined">
-                <span class="text-white"  v-for="(cast,index) in getCast('movie',listItem.id)" :key="index">
-                 {{cast.name}}
+                <span class="text-white"  v-for="(actor,index) in searchedListCast" :key="index">
+                 aa
                 </span>
             </p>
             <p v-else>
-                 <span class="text-white" v-for="(cast,index) in getCast('tv',listItem.id) " :key="index">
-                   {{cast.name}}
+                 <span class="text-white" v-for="(actor,index) in searchedListCast" :key="index">
+                   aa
                 </span>
             </p>
         </div>       
@@ -28,15 +28,15 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
      data:function(){
         return{
-            languageArray:['it','de','en','pt'], 
+            languageArray:['it','de','en','pt'],
         }
     },
     props:{
         listItem:Object,
+        searchedListCast:Array,
     },
      methods:{
         convertLangToFlag(singleElement){
@@ -49,6 +49,7 @@ export default {
         convertVoteToStar(vote){
            const starVote = vote / 2
            return Math.ceil(starVote);
+           
         },
         getTitle(item){
             if( item.title != null || item.title != undefined)
@@ -64,22 +65,8 @@ export default {
             }
             return item.original_name
         },
-         getCast(typeElement,idElement){
-            axios.get(`https://api.themoviedb.org/3/${typeElement}/${idElement}/credits?api_key=f6a28c97150ef559daa0a8f32bc1fee9`)
-                .then( (result) => {   
-                        let castList = result.data.cast.slice(0,5); 
-                        console.log(castList)
-                         return castList 
-                        })   
-                         .catch((error) => {
-                        console.warn(error)
-                    })   
-     
-        }
-       /*  getGenre(typeElement,idElement){
-            axios.get(`https://api.themoviedb.org/3/genre/${typeElement}/list?api_key=<<api_key>>&language=en-US`)
-        }
- */
+        
+
     },
   
 }

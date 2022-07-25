@@ -8,12 +8,16 @@
             <div class="py-5" v-show="searchedFilmList != 0" id="film-list">
                 <h2 class="text-white text-start display-2 text-center">FILM</h2>
                 <ElementsList
-                :searchedElements="searchedFilmList"/>
+                :searchedElements="searchedFilmList"
+                :searchedCast="searchedFilmActors"/>
+                
+                
             </div>
             <div class="py-5" v-show="searchedSeriesList != 0" id="series-list">
                 <h2 class="text-white text-start display-2 text-center">SERIE TV</h2>
                  <ElementsList
                 :searchedElements="searchedSeriesList"     
+                :searchedCast ="searchedSeriesActors"
                 />
             </div>
             
@@ -28,6 +32,8 @@ export default {
  props:{
     searchedFilmList:Array,
     searchedSeriesList:Array,
+    searchedFilmActors:Array,
+    searchedSeriesActors:Array
     },
  components:{
     ElementsList,
