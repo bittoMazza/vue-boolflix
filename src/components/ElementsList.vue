@@ -5,6 +5,7 @@
             :searchedListCast="searchedCast"
             :searchedCastIndex ="index"
             :listItem="element"
+            :genreListElement="genreList"
             />
         </div>      
      </div>
@@ -16,6 +17,7 @@ export default {
      props:{
         searchedElements:Array,
         searchedCast:Array,
+        genreList:Array,
     },
     components:{
         Card,

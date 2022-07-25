@@ -8,6 +8,8 @@
     :searchedSeriesList="searchedSeriesList"
     :searchedFilmActors="searchedFilmCast"
     :searchedSeriesActors="searchedSeriesCast"
+    :filmGenreList="filmGenreList"
+    :seriesGenreList="seriesGenreList"
     />
   </div>
 </template>
@@ -30,6 +32,8 @@ export default {
       searchedSeriesList:[],
       searchedFilmCast:[],
       searchedSeriesCast:[],
+      filmGenreList:[],
+      seriesGenreList:[],
       apiKey:"f6a28c97150ef559daa0a8f32bc1fee9",
     }
   },
@@ -41,33 +45,39 @@ export default {
             else{
                  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&&language=it-IT&query=${Element}`) // Facciamo una ricerca nei film e popoliamo il suo array
                 .then( (result) => {   
-                        this.searchedFilmList = result.data.results; 
+                        this.searchedFilmList = result.data.results
+                        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}`)
+                        .then((result) => {
+                          this.filmGenreList = result.data.genres
+                        })
+                       .catch((error) => {
+                         console.warn(error)
+                         })
                         for(let i=0; i < this.searchedFilmList.length;i++){
                           axios.get(`https://api.themoviedb.org/3/movie/${this.searchedFilmList[i].id}/credits?api_key=f6a28c97150ef559daa0a8f32bc1fee9`)
                             .then( (result) => {   
                             this.searchedFilmCast.push(result.data.cast.slice(0,5))
                         }) 
-                        .catch((error) => {
-                              console.warn(error)
-                            })
                         }
-                        console.log(this.searchedFilmCast) 
                         })                   
-                    .catch((error) => {
-                        console.warn(error)
-                    })
+                .catch((error) => {
+                  console.warn(error)
+                })
                 axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${this.apiKey}&&language=it-IT&query=${Element}`) // Facciamo una ricerca nelle serie e popoliamo il suo array
                 .then( (result) => {   
-                        this.searchedSeriesList = result.data.results;                          
+                        this.searchedSeriesList = result.data.results 
+                        axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=${this.apiKey}`)
+                        .then((result) => {
+                          this.seriesGenreList = result.data.genres
+                        })    
+                        .catch((error) => {
+                         console.warn(error)
+                         })                    
                           for(let i=0; i < this.searchedSeriesList.length;i++){
                           axios.get(`https://api.themoviedb.org/3/tv/${this.searchedSeriesList[i].id}/credits?api_key=f6a28c97150ef559daa0a8f32bc1fee9`)
                             .then( (result) => {   
                             this.searchedSeriesCast.push(result.data.cast.slice(0,5))
                             })
-                            .catch((error) => {
-                              console.warn(error)
-                            })
-                         
                         }
                            console.log(this.searchedSeriesCast)
                         })                   

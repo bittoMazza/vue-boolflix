@@ -19,6 +19,12 @@
                  {{Actors.name}},
                 </span>
             </p>
+            <p>
+                <span class="card-info text.white"> Generi : </span>
+                <span class="text-white" v-for="(genre,id) in listItem.genre_ids" :key="id" >
+                    {{ getGenre(genre,listItem.genre_ids) }},
+                </span>
+            </p>
         </div>       
     </div>
 </template>
@@ -34,6 +40,7 @@ export default {
         listItem:Object,
         searchedListCast:Array,
         searchedCastIndex:Number,
+        genreListElement:Array,
     },
      methods:{
         convertLangToFlag(singleElement){
@@ -62,6 +69,15 @@ export default {
             }
             return item.original_name
         },
+        getGenre(singleGenre){
+            for(let i=0;i < this.genreListElement.length ;i++)
+            {
+                if(singleGenre  === this.genreListElement[i].id)
+                {
+                    return this.genreListElement[i].name
+                }
+            }
+        }
 
     },
   
@@ -89,7 +105,7 @@ export default {
     border: 2px solid black;
     background-color: black;
     margin: 15px 5px;
-    width: calc((100% / 6) - 10px);
+    width: calc((100% / 5) - 10px);
     &:hover .poster-image{
         opacity: 0.1;
     }
@@ -139,7 +155,7 @@ export default {
       width: calc((100% / 4) - 10px);
         }
     }
-    @media screen and (max-width: 1190px) {
+    @media screen and (max-width: 1350px) {
     .card-container {
       width: calc((100% / 3) - 10px);
         }
@@ -147,7 +163,7 @@ export default {
     .card-overview{
         height: 200px;
     }
-     @media screen and (max-width: 970px) {
+     @media screen and (max-width: 1090px) {
     .card-container {
       width: calc((100% / 2) - 10px);
         }

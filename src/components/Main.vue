@@ -9,8 +9,10 @@
                 <h2 class="text-white text-start display-2 text-center">FILM</h2>
                 <ElementsList
                 :searchedElements="searchedFilmList"
-                :searchedCast="searchedFilmActors"/>
-                
+                :searchedCast="searchedFilmActors"
+                :genreList="filmGenreList"
+                />
+             
                 
             </div>
             <div class="py-5" v-show="searchedSeriesList != 0" id="series-list">
@@ -18,6 +20,7 @@
                  <ElementsList
                 :searchedElements="searchedSeriesList"     
                 :searchedCast ="searchedSeriesActors"
+                :genreList="seriesGenreList"
                 />
             </div>
             
@@ -33,7 +36,9 @@ export default {
     searchedFilmList:Array,
     searchedSeriesList:Array,
     searchedFilmActors:Array,
-    searchedSeriesActors:Array
+    searchedSeriesActors:Array,
+    filmGenreList:Array,
+    seriesGenreList:Array,
     },
  components:{
     ElementsList,
