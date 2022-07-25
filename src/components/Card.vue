@@ -4,18 +4,19 @@
         <img v-else src="/no-poster.png" class="poster-image" alt="Poster non disponibile">
         <div class="card-content">
             <div>
-                <span class="d-block py-1"><span class="card-info">Titolo</span> : {{ getTitle(listItem) }}</span>
-                <span class="d-block py-1"><span class="card-info">Titolo Originale</span> : {{ getOriginalTitle(listItem) }}</span>
+                <span class="d-block "><span class="card-info">Titolo</span> : {{ getTitle(listItem) }}</span>
+                <span class="d-block "><span class="card-info">Titolo Originale</span> : {{ getOriginalTitle(listItem) }}</span>
             </div>
             <span v-if="convertVoteToStar(listItem.vote_average) != 0">
-                <span class="card-info py-1">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span><br>
+                <span class="card-info py-1">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span>
             </span>
             <span v-else class="py-1"> NON CI SONO VOTI </span><br>
             <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
             <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>    
             <p>
-                <span class="text-white"  v-for="(Actors,index) in searchedListCast" :key="index">
-                 {{Actors.name}}
+                <span class="card-info text-white">Cast : </span>
+                <span class="text-white"  v-for="(Actors,index) in searchedListCast[searchedCastIndex]" :key="index">
+                 {{Actors.name}} ,
                 </span>
             </p>
         </div>       
@@ -27,12 +28,12 @@ export default {
      data:function(){
         return{
             languageArray:['it','de','en','pt'],
-            indice:0
         }
     },
     props:{
         listItem:Object,
         searchedListCast:Array,
+        searchedCastIndex:Number,
     },
      methods:{
         convertLangToFlag(singleElement){

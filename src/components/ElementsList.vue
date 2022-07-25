@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="d-flex flex-wrap">
-            <Card  v-for="element in searchedElements" :key="element.id" 
+            <Card  v-for="(element,index) in searchedElements" :key="element.id" 
             :searchedListCast="searchedCast"
+            :searchedCastIndex ="index"
             :listItem="element"
             />
         </div>      
