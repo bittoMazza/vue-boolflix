@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <div class="d-flex flex-wrap">
+        <div class="prova">
             <Card  v-for="(element,index) in searchedElements" :key="element.id" 
             :searchedListCast="searchedCast"
             :searchedCastIndex ="index"
@@ -8,7 +7,6 @@
             :genreListElement="genreList"
             />
         </div>      
-     </div>
 </template>
 
 <script>
@@ -27,5 +25,22 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/variables.scss";
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
 
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19, 0.3); 
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background:white; 
+    }
+.prova{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
 </style>

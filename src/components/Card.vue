@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container">
+    <div class="card-container d-inline-block">
         <img v-if="listItem.poster_path != null" :src="'https://image.tmdb.org/t/p/w342'+listItem.poster_path" class="poster-image text-white" alt="immagine Poster"> 
         <img v-else src="/no-poster.png" class="poster-image" alt="Poster non disponibile">
         <div class="card-content">
@@ -12,7 +12,8 @@
             </span>
             <span v-else class="py-1"> NON CI SONO VOTI </span><br>
             <img :src="convertLangToFlag(listItem)" class="flag-image" :alt="'lingua originale : '+ listItem.original_language ">  
-            <p class="card-overview"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>    
+            <p class="card-overview" v-if="listItem.overview != ''"><span class="card-info">Overview</span> : {{ listItem.overview }}</p>   
+            <span v-else class="d-block py-2 fw-bold main-text-color">LA TRAMA NON E' PRESENTE</span> 
             <p>
                 <span class="card-info text-white">Cast : </span>
                 <span class="text-white"  v-for="(Actors,index) in searchedListCast[searchedCastIndex]" :key="index">
@@ -21,7 +22,7 @@
             </p>
             <p>
                 <span class="card-info text.white"> Generi : </span>
-                <span class="text-white" v-for="(genre,id) in listItem.genre_ids" :key="id" >
+                <span class="text-white" v-for="(genre,index) in listItem.genre_ids" :key="index" >
                     {{ getGenre(genre,listItem.genre_ids) }},
                 </span>
             </p>
@@ -77,7 +78,7 @@ export default {
                     return this.genreListElement[i].name
                 }
             }
-        }
+        },
 
     },
   
@@ -130,6 +131,7 @@ export default {
         background:$mainColor; 
     }
     .card-content{
+        white-space:pre-wrap;
         backface-visibility: hidden;
         transform: rotateY( 180deg );
         display: none;
@@ -143,7 +145,7 @@ export default {
         }
         .card-overview{
             margin-top: 10px;
-            height: 80px;
+            height:80px;
             overflow-y: scroll;
             text-overflow: ellipsis;
         }
