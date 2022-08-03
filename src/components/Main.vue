@@ -7,8 +7,8 @@
                 <a v-show="searchedSeriesList != 0" class="anchor" href="#series-list">SERIE TV</a>
             </div>
             
-            <div class="py-4" v-show="searchedFilmList == 0">
-                <h2 class="text-white text-start display-2 text-center">I TREND DEL MOMENTO</h2>
+            <div class="pt-3" v-show="searchedFilmList == 0">
+                <h2 class="text-white text-start display-2 text-center fw-bold">I <span class="main-text-color">FILM</span> DEL MOMENTO</h2>
                 <ElementsList
                 :searchedElements="trends"
                 :searchedCast="searchedFilmActors"
@@ -17,7 +17,7 @@
             </div>
 
             <div class="py-5" v-show="searchedFilmList != 0" id="film-list">
-                <h2 class="pt-4 text-white text-start display-2 text-center">FILM</h2>
+                <h2 class="text-white text-start display-2 text-center fw-bold">FILM</h2>
                 <ElementsList
                 :searchedElements="searchedFilmList"
                 :searchedCast="searchedFilmActors"
@@ -25,8 +25,8 @@
                 />              
             </div>
 
-            <div class="py-5" v-show="searchedSeriesList != 0" id="series-list">
-                <h2 class="text-white text-start display-2 text-center">SERIE TV</h2>
+            <div class="py-4" v-show="searchedSeriesList != 0" id="series-list">
+                <h2 class="text-white text-start display-2 text-center fw-bold">SERIE TV</h2>
                  <ElementsList
                 :searchedElements="searchedSeriesList"     
                 :searchedCast ="searchedSeriesActors"
