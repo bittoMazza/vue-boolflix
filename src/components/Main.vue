@@ -12,7 +12,7 @@
                 <ElementsList
                 :searchedElements="trends"
                 :searchedCast="searchedFilmActors"
-                :genreList="filmGenreList"
+                :genreList="movieGenre"
                 />              
             </div>
 
@@ -21,7 +21,7 @@
                 <ElementsList
                 :searchedElements="searchedFilmList"
                 :searchedCast="searchedFilmActors"
-                :genreList="filmGenreList"
+                :genreList="movieGenre"
                 />              
             </div>
 
@@ -30,7 +30,7 @@
                  <ElementsList
                 :searchedElements="searchedSeriesList"     
                 :searchedCast ="searchedSeriesActors"
-                :genreList="seriesGenreList"
+                :genreList="seriesGenre"
                 />
             </div>
             
@@ -48,8 +48,6 @@ export default {
     searchedSeriesList:Array,
     searchedFilmActors:Array,
     searchedSeriesActors:Array,
-    filmGenreList:Array,
-    seriesGenreList:Array,
     keyApi:String,
     },
  components:{
@@ -58,15 +56,29 @@ export default {
  data:function(){
     return{
         trends:[],
-        trendsGenre:[],
-        trendsCast:[],
+        seriesGenre:[],
+        movieGenre:[],
     }
  },
  created(){
-     axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${this.keyApi}`) // Facciamo una ricerca nei film e popoliamo il suo array
+     axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${this.keyApi}`) // Facciamo una ricerca nei film e popoliamo il suo array
                 .then( (result) => {   
                     this.trends = result.data.results
+                    axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.keyApi}`)
+                        .then((result) => {
+                          this.movieGenre = result.data.genres
+                        })
+                       .catch((error) => {
+                         console.warn(error)
+                         })
                     })
+                    axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=${this.keyApi}`)
+                        .then((result) => {
+                          this.seriesGenre = result.data.genres
+                        })    
+                        .catch((error) => {
+                         console.warn(error)
+                         })   
                     .catch((error) => {
                         console.warn(error)
                         })

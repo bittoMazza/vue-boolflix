@@ -21,7 +21,7 @@
                 </span>
             </p>
             <p>
-                <span class="card-info text.white"> Generi : </span>
+                <span class="card-info text.white">Generi : </span>
                 <span class="text-white" v-for="(genre,index) in listItem.genre_ids" :key="index" >
                     {{ getGenre(genre,listItem.genre_ids) }},
                 </span>
@@ -71,6 +71,7 @@ export default {
             return item.original_name
         },
         getGenre(singleGenre){
+            console.log(singleGenre)
             for(let i=0;i < this.genreListElement.length ;i++)
             {
                 if(singleGenre  === this.genreListElement[i].id)
