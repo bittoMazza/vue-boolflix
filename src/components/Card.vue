@@ -4,8 +4,8 @@
         <img v-else src="/no-poster.png" class="poster-image" alt="Poster non disponibile">
         <div class="card-content">
             <div>
-                <span class="d-block "><span class="card-info">Titolo</span> : {{ getTitle(listItem) }}</span>
-                <span class="d-block "><span class="card-info">Titolo Originale</span> : {{ getOriginalTitle(listItem) }}</span>
+                <span class="d-block "><span class="card-info main-text-color">Titolo</span> : {{ getTitle(listItem) }}</span>
+                <span class="d-block "><span class="card-info ">Titolo Originale</span> : {{ getOriginalTitle(listItem) }}</span>
             </div>
             <span v-if="convertVoteToStar(listItem.vote_average) != 0">
                 <span class="card-info py-1">Voto : <i v-for="(star,index) in convertVoteToStar(listItem.vote_average)" :key="index" class="bi bi-star-fill star-icon"></i></span>
@@ -122,7 +122,7 @@ export default {
     }
 
     ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19, 0.3); 
+        -webkit-box-shadow: inset 0 0 6px rgba(245, 19, 19); 
         border-radius: 10px;
     }
 
@@ -145,7 +145,7 @@ export default {
         }
         .card-overview{
             margin-top: 10px;
-            height:80px;
+            height:75px;
             overflow-y: scroll;
             text-overflow: ellipsis;
         }

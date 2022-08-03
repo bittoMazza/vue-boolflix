@@ -10,6 +10,7 @@
     :searchedSeriesActors="searchedSeriesCast"
     :filmGenreList="filmGenreList"
     :seriesGenreList="seriesGenreList"
+    :keyApi="apiKey"
     />
   </div>
 </template>
@@ -87,20 +88,9 @@ export default {
             }
            
         },
-  }
+  },
+ 
 }
-/*  getCast(typeElement,idElement){
-            axios.get(`https://api.themoviedb.org/3/${typeElement}/${idElement}/credits?api_key=f6a28c97150ef559daa0a8f32bc1fee9`)
-                .then( (result) => {   
-                        let castList = result.data.cast.slice(0,5); 
-                        console.log(castList)
-                         return castList 
-                        })   
-                         .catch((error) => {
-                        console.warn(error)
-                    })   
-     
-        } */
 </script>
 
 <style lang="scss">

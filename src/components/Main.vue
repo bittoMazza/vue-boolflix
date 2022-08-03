@@ -1,10 +1,19 @@
 <template>
     <main>
         <div class="container-elements">
+
             <div class="mt-5" id="film-list"> 
                 <a v-show="searchedFilmList != 0"  class="anchor" href="#film-list">FILM</a>
                 <a v-show="searchedSeriesList != 0" class="anchor" href="#series-list">SERIE TV</a>
             </div>
+
+       <!--      <div>
+                <h2 class="text-white text-start display-2 text-center">I TREND DEL MOMENTO</h2>
+                <ElementsList
+                :searchedElements="trends"
+                />
+            </div> -->
+            
             <div class="py-5" v-show="searchedFilmList != 0" id="film-list">
                 <h2 class="text-white text-start display-2 text-center">FILM</h2>
                 <ElementsList
@@ -29,6 +38,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import ElementsList from "./ElementsList.vue"
 
 export default {
@@ -39,10 +49,16 @@ export default {
     searchedSeriesActors:Array,
     filmGenreList:Array,
     seriesGenreList:Array,
+    keyApi:String,
     },
  components:{
     ElementsList,
- }
+ },
+ data:function(){
+    return{
+        trends:[],
+    }
+ },
 }
 </script>
 
