@@ -1,5 +1,5 @@
 <template>
-        <div class="prova">
+        <div class="carousel">
             <Card  v-for="(element,index) in searchedElements" :key="element.id" 
             :searchedListCast="searchedCast"
             :searchedCastIndex ="index"
@@ -38,7 +38,7 @@ export default {
         border-radius: 10px;
         background:whitesmoke; 
     }
-.prova{
+.carousel{
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;

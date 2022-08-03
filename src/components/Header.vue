@@ -5,9 +5,9 @@
         <img src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" class="netflix-logo m-3" alt="">
         <nav class="mx-3">
           <ul class="text-white">
-            <li>Home</li>
-            <li>Serie Tv</li>
-            <li>Film</li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#series-list">Serie Tv</a></li>
+            <li><a href="#film-list">Film</a></li>
           </ul>
         </nav>
       </div>
@@ -49,6 +49,14 @@ export default {
       padding: 10 10px;
       margin: 0 10px;
       font-size: 18px;
+
+      a{
+        text-decoration: none;
+        color: white;
+        &:hover{
+          color: $mainColor;
+        }
+      }
     }
     .netflix-logo{
       width:150px;
